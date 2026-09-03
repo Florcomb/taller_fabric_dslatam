@@ -1,0 +1,4 @@
+# El repositorio se sincroniza con la integracion de git de Microsoft Fabric,
+# que escribe con finales de linea LF. Fijarlos evita diffs fantasma entre
+# participantes en Windows y lo que Fabric confirma desde el workspace.
+* text=auto eol=lf
