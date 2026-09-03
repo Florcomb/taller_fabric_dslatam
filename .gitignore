@@ -1,0 +1,10 @@
+# Configuracion local de editores. No forma parte del material del taller.
+.vscode/
+.idea/
+
+# Artefactos de Python que puede dejar tools/py_a_ipynb.py
+__pycache__/
+*.pyc
+
+# Checkpoints de Jupyter, si alguien abre los .ipynb localmente
+.ipynb_checkpoints/
