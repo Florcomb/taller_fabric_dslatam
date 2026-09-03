@@ -188,7 +188,10 @@ def main() -> int:
                 desactualizados.append(salida.name)
             print(f"  {estado:14s} {salida.name}")
         else:
-            salida.write_text(texto, encoding="utf-8")
+            # newline explícito: en Windows, el modo texto de Python traduce cada
+            # salto de línea a CRLF y el archivo quedaría distinto de lo que guarda
+            # git (.gitattributes fija LF para todo el repositorio).
+            salida.write_text(texto, encoding="utf-8", newline="\n")
             print(f"  {salida.name:36s} {n_md:>2} markdown · {n_codigo:>2} código")
 
     if desactualizados:
