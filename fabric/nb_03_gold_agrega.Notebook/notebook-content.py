@@ -12,25 +12,19 @@
 # MARKDOWN ********************
 
 # # nb_03_gold_agrega · Silver → Gold
-#
-# Gold es la capa de **respuestas pre-calculadas**: agregados por día que un informe de
+# # Gold es la capa de **respuestas pre-calculadas**: agregados por día que un informe de
 # Power BI puede leer sin recorrer millones de filas.
-#
-# Ojo con una decisión de diseño del taller, que suele generar discusión:
-#
-# > Los tres modelos semánticos del taller se construyen sobre **Silver**, no sobre Gold.
-#
-# No es un descuido. La ontología necesita **entidades a grano atómico**: una fila = una
+# # Ojo con una decisión de diseño del taller, que suele generar discusión:
+# # > Los tres modelos semánticos del taller se construyen sobre **Silver**, no sobre Gold.
+# # No es un descuido. La ontología necesita **entidades a grano atómico**: una fila = una
 # venta, un despacho, una lectura. Un agregado diario no es una entidad de negocio, es un
 # resumen; no tiene identidad propia ni participa en relaciones. Gold sigue existiendo y
 # sigue siendo la capa correcta para BI — pero BI y ontología quieren cosas distintas, y
 # ese es justamente uno de los aprendizajes del taller.
-#
-# La última tabla de este notebook es el argumento completo: para responder una sola
+# # La última tabla de este notebook es el argumento completo: para responder una sola
 # pregunta que cruza los tres dominios hay que escribir a mano un join de cinco tablas
 # y materializarlo. Cada pregunta nueva, una tabla nueva. La ontología evita exactamente eso.
-#
-# ⏱️ ~10 minutos · Salida: 4 tablas en `lh_gold_polar.dbo`
+# # ⏱️ ~10 minutos · Salida: 4 tablas en `lh_gold_polar.dbo`
 
 # CELL ********************
 
@@ -129,17 +123,13 @@ escribir(agg_frio_dia_equipo, LH_GOLD, "agg_frio_dia_equipo")
 # MARKDOWN ********************
 
 # ## La tabla que justifica la ontología
-#
-# Pregunta de negocio:
-#
-# > *¿Cuánta venta de producto congelado ocurrió en tiendas que ese mismo día tuvieron
+# # Pregunta de negocio:
+# # > *¿Cuánta venta de producto congelado ocurrió en tiendas que ese mismo día tuvieron
 # > un freezer en excursión térmica y recibieron un despacho atrasado?*
-#
-# Ningún modelo semántico del taller puede responderla: la venta está en uno, el
+# # Ningún modelo semántico del taller puede responderla: la venta está en uno, el
 # despacho en otro y la temperatura en un tercero. Para contestarla en Gold hay que
 # escribir **este** join a mano y materializarlo.
-#
-# Cuenta las líneas. Después, en el paso de la ontología, la misma pregunta se hace
+# # Cuenta las líneas. Después, en el paso de la ontología, la misma pregunta se hace
 # en lenguaje natural sin escribir ningún join.
 
 # CELL ********************

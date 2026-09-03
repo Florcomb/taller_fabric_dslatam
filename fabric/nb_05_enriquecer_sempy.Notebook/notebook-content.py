@@ -12,34 +12,26 @@
 # MARKDOWN ********************
 
 # # nb_05_enriquecer_sempy · Sinónimos y metadata de negocio
-#
-# Un modelo semántico correcto no basta para que un agente responda bien. El agente
+# # Un modelo semántico correcto no basta para que un agente responda bien. El agente
 # falla porque el usuario **no usa las palabras del modelo**: pregunta por "locales",
 # el modelo tiene `Tienda`; pregunta por "SKU", el modelo tiene `Producto`; pregunta
 # por "quiebre de frío", el modelo tiene `excursion_termica`.
-#
-# Eso es lo que resolvemos aquí, con `sempy` y el TOM, sobre los tres modelos a la vez.
-#
-# ### Las tres capas que agregamos
-#
-# | Capa | Método | Para qué sirve |
+# # Eso es lo que resolvemos aquí, con `sempy` y el TOM, sobre los tres modelos a la vez.
+# # ### Las tres capas que agregamos
+# # | Capa | Método | Para qué sirve |
 # |---|---|---|
 # | **Descripciones** | `Description` en TOM | Qué significa el objeto. Es lo que lee el agente cuando explora el esquema. |
 # | **Sinónimos** | `set_synonym` | Cómo lo llama la gente. Vive en el *esquema lingüístico* del modelo, por cultura. |
 # | **Metadata de negocio** | `set_annotation` / `set_extended_property` | Unidad, dueño, sensibilidad, umbral. Contexto que no cabe en una descripción. |
-#
-# ### Qué viaja a la ontología y qué no
-#
-# Conviene decirlo antes de que alguien lo pregunte a mitad del taller:
-#
-# - Las **descripciones** son el puente real: vienen del comentario Delta de `nb_02`,
+# # ### Qué viaja a la ontología y qué no
+# # Conviene decirlo antes de que alguien lo pregunte a mitad del taller:
+# # - Las **descripciones** son el puente real: vienen del comentario Delta de `nb_02`,
 #   pasan por el modelo semántico y llegan a la ontología.
 # - Los **sinónimos** que ponemos aquí son del modelo semántico (Copilot y Q&A de
 #   Power BI). La ontología tiene **su propio campo de sinónimos**, que se carga en
 #   su interfaz. No se heredan automáticamente. Por eso en `nb_99` exportamos este
 #   vocabulario a una tabla: para copiarlo a la ontología sin volver a inventarlo.
-#
-# ⏱️ ~20 minutos
+# # ⏱️ ~20 minutos
 
 # CELL ********************
 
@@ -87,8 +79,7 @@ CULTURA = "es-ES"
 # MARKDOWN ********************
 
 # ## 1 · Descripciones de tabla
-#
-# Las columnas ya heredaron sus descripciones desde los comentarios Delta de `nb_02`.
+# # Las columnas ya heredaron sus descripciones desde los comentarios Delta de `nb_02`.
 # Falta el nivel de tabla, que es el que más pesa cuando un agente decide **qué entidad
 # mirar** para responder una pregunta.
 
@@ -149,13 +140,11 @@ for modelo in MODELOS:
 # MARKDOWN ********************
 
 # ## 2 · Sinónimos
-#
-# El vocabulario está definido **una sola vez**, abajo, y se aplica a los tres modelos.
+# # El vocabulario está definido **una sola vez**, abajo, y se aplica a los tres modelos.
 # Que `Tienda` tenga los mismos sinónimos en los tres es exactamente el punto: un
 # vocabulario común es lo que después permite que la ontología los trate como la
 # misma cosa.
-#
-# El `peso` (0 a 1) desempata cuando dos objetos comparten un término.
+# # El `peso` (0 a 1) desempata cuando dos objetos comparten un término.
 
 # CELL ********************
 
@@ -253,18 +242,14 @@ print(f"\nTotal: {total} sinonimos en {len(MODELOS)} modelos")
 # MARKDOWN ********************
 
 # ## 3 · Metadata de negocio
-#
-# Lo que una descripción no alcanza a decir: en qué unidad está el número, quién es
+# # Lo que una descripción no alcanza a decir: en qué unidad está el número, quién es
 # el dueño del dato, cuál es el umbral que lo vuelve un problema, si es sensible.
-#
-# Usamos las dos vías que ofrece el TOM, porque no son lo mismo:
-#
-# - **`set_annotation`** — clave/valor libre. Es el mecanismo estándar para metadata
+# # Usamos las dos vías que ofrece el TOM, porque no son lo mismo:
+# # - **`set_annotation`** — clave/valor libre. Es el mecanismo estándar para metadata
 #   propia y sobrevive a los despliegues.
 # - **`set_extended_property`** — clave/valor tipado (`String` o `Json`), pensado para
 #   que lo consuman herramientas externas.
-#
-# Estos pares clave-valor son además el borrador de la **additional metadata** que
+# # Estos pares clave-valor son además el borrador de la **additional metadata** que
 # cargaremos en la ontología: la estructura es idéntica.
 
 # CELL ********************
@@ -351,8 +336,7 @@ for modelo, (dominio, dueno) in DOMINIOS.items():
 # MARKDOWN ********************
 
 # ## 4 · Verificación
-#
-# `list_synonyms` lee el esquema lingüístico y devuelve lo que quedó realmente guardado.
+# # `list_synonyms` lee el esquema lingüístico y devuelve lo que quedó realmente guardado.
 # Si aquí no aparece nada, el `with` no llegó a hacer commit: revisa que
 # `readonly=False` esté puesto en todas las conexiones de arriba.
 
@@ -394,16 +378,12 @@ for modelo in MODELOS:
 # MARKDOWN ********************
 
 # ### Pruébalo antes de seguir
-#
-# Abre `sm_polar_ventas` en el workspace y usa Copilot o una visualización de P&R.
+# # Abre `sm_polar_ventas` en el workspace y usa Copilot o una visualización de P&R.
 # Pregunta con las palabras del negocio, no con las del modelo:
-#
-# - *¿cuál es la facturación por sucursal?* — "facturación" y "sucursal" no son nombres
+# # - *¿cuál es la facturación por sucursal?* — "facturación" y "sucursal" no son nombres
 #   de ninguna columna; ahora el modelo igual entiende.
 # - *¿qué locales vendieron más congelados?*
-#
-# Ese salto es lo que acabamos de comprar con 30 líneas de `sempy`. Es también el
+# # Ese salto es lo que acabamos de comprar con 30 líneas de `sempy`. Es también el
 # argumento para el paso siguiente: si un vocabulario mejora tanto **un** modelo,
 # la ontología es lo que permite tener **un solo vocabulario para los tres**.
-#
-# Siguiente paso: `docs/07-ontologia.md`.
+# # Siguiente paso: `docs/07-ontologia.md`.

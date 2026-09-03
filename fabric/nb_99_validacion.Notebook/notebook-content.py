@@ -12,15 +12,12 @@
 # MARKDOWN ********************
 
 # # nb_99_validacion · Chequeo previo a la ontología
-#
-# Ejecuta este notebook **antes** de generar la ontología. Verifica las condiciones que,
+# # Ejecuta este notebook **antes** de generar la ontología. Verifica las condiciones que,
 # cuando fallan, producen una ontología que se crea sin errores y no devuelve datos.
-#
-# Ese es el modo de falla más caro de Fabric IQ en preview: **no hay mensaje de error**.
+# # Ese es el modo de falla más caro de Fabric IQ en preview: **no hay mensaje de error**.
 # Las entidades aparecen, el grafo se dibuja, y las consultas vuelven vacías o con nulos.
 # Cinco minutos aquí ahorran media hora de diagnóstico a ciegas.
-#
-# Al final exporta el vocabulario de `nb_05` en el formato que pide la interfaz de la
+# # Al final exporta el vocabulario de `nb_05` en el formato que pide la interfaz de la
 # ontología, para no volver a escribirlo a mano.
 
 # CELL ********************
@@ -112,8 +109,7 @@ for tabla in TABLAS_CLAVE:
 # MARKDOWN ********************
 
 # ## 2 · Sin column mapping
-#
-# Si Delta activó *column mapping* en una tabla, el grafo de la ontología no la puede
+# # Si Delta activó *column mapping* en una tabla, el grafo de la ontología no la puede
 # leer. Se activa sola cuando un nombre de columna trae espacio, `,`, `;`, `{}`, `()`,
 # `=`, tab o salto de línea.
 
@@ -138,8 +134,7 @@ for tabla in conteos:
 # MARKDOWN ********************
 
 # ## 3 · Tipos compatibles con Fabric Graph
-#
-# `decimal` no está soportado: una columna decimal devuelve `null` en toda consulta de
+# # `decimal` no está soportado: una columna decimal devuelve `null` en toda consulta de
 # la ontología, sin avisar.
 
 # CELL ********************
@@ -162,8 +157,7 @@ for tabla in conteos:
 # MARKDOWN ********************
 
 # ## 4 · Claves únicas y de tipo válido
-#
-# La *entity type key* debe ser `string` o `integer`, y única. En el taller son todas
+# # La *entity type key* debe ser `string` o `integer`, y única. En el taller son todas
 # `string` a propósito: en la ontología, una propiedad con el mismo nombre debe tener
 # el mismo tipo en **todas** las entidades donde aparece, y mezclar `id` string con
 # `id` entero rompe la generación.
@@ -253,12 +247,10 @@ print("=" * 68)
 # MARKDOWN ********************
 
 # ## 7 · Vocabulario para la ontología
-#
-# Los sinónimos de `nb_05` viven en el modelo semántico y **no** se heredan a la
+# # Los sinónimos de `nb_05` viven en el modelo semántico y **no** se heredan a la
 # ontología: la ontología tiene su propio campo de sinónimos, que se carga en su
 # interfaz. Aquí lo exportamos ya agrupado por entidad, listo para copiar y pegar.
-#
-# En la ontología, **solo los entity types aceptan sinónimos**; propiedades y
+# # En la ontología, **solo los entity types aceptan sinónimos**; propiedades y
 # relaciones aceptan descripción y metadata clave-valor, pero no sinónimos.
 
 # CELL ********************

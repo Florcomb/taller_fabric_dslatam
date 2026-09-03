@@ -12,33 +12,25 @@
 # MARKDOWN ********************
 
 # # nb_04_modelos_semanticos · Tres modelos Direct Lake sobre Silver
-#
-# Creamos tres modelos semánticos, uno por dominio, todos en **Direct Lake** sobre las
+# # Creamos tres modelos semánticos, uno por dominio, todos en **Direct Lake** sobre las
 # tablas de `lh_silver_polar`:
-#
-# | Modelo | Dominio | Tablas |
+# # | Modelo | Dominio | Tablas |
 # |---|---|---|
 # | `sm_polar_ventas` | Comercial | Tienda, Producto, Cliente, Venta |
 # | `sm_polar_operaciones` | Logística | Tienda, Ruta, Vehiculo, Despacho |
 # | `sm_polar_activos` | Cadena de frío | Tienda, Equipo, LecturaSensor |
-#
-# `Tienda` aparece en los tres. Ese solapamiento **es el diseño**: es el punto donde la
+# # `Tienda` aparece en los tres. Ese solapamiento **es el diseño**: es el punto donde la
 # ontología va a coser los tres dominios.
-#
-# ### Por qué Direct Lake y no Import
-#
-# No es una preferencia de rendimiento. Es un requisito duro de Fabric IQ:
-#
-# | Modo | Genera entidades y relaciones | Genera **bindings a datos** |
+# # ### Por qué Direct Lake y no Import
+# # No es una preferencia de rendimiento. Es un requisito duro de Fabric IQ:
+# # | Modo | Genera entidades y relaciones | Genera **bindings a datos** |
 # |---|---|---|
 # | Import | Sí | **No** |
 # | **Direct Lake** | Sí | **Sí** |
 # | DirectQuery | Sí | **No** |
-#
-# Un modelo Import produce una ontología con la estructura correcta y **sin datos
+# # Un modelo Import produce una ontología con la estructura correcta y **sin datos
 # detrás**. Las consultas no devuelven nada y el error no dice por qué.
-#
-# ⏱️ ~20 minutos · Salida: 3 modelos semánticos en el workspace
+# # ⏱️ ~20 minutos · Salida: 3 modelos semánticos en el workspace
 
 # CELL ********************
 
@@ -110,8 +102,7 @@ MODELOS = {
 # MARKDOWN ********************
 
 # ## Creación de los modelos
-#
-# `inherit_descriptions=True` es la clave del encadenamiento: toma los comentarios que
+# # `inherit_descriptions=True` es la clave del encadenamiento: toma los comentarios que
 # `nb_02` dejó en las columnas Delta y los convierte en descripciones del modelo
 # semántico. De ahí bajan a la ontología. Un comentario escrito una vez en Silver
 # termina siendo el contexto que lee un agente.
@@ -141,11 +132,9 @@ for nombre, tablas in MODELOS.items():
 # MARKDOWN ********************
 
 # ## Relaciones
-#
-# La ontología deriva sus **relationship types** de las relaciones del modelo semántico.
+# # La ontología deriva sus **relationship types** de las relaciones del modelo semántico.
 # Sin relaciones aquí, la ontología sale con entidades sueltas y sin grafo.
-#
-# `rely_on_referential_integrity=True` es correcto porque en `nb_02` ya descartamos
+# # `rely_on_referential_integrity=True` es correcto porque en `nb_02` ya descartamos
 # las filas huérfanas: la integridad está garantizada aguas arriba.
 
 # CELL ********************
@@ -197,14 +186,11 @@ for nombre, relaciones in RELACIONES.items():
 # MARKDOWN ********************
 
 # ## Claves primarias
-#
-# Este paso se salta muy fácil y cuesta caro después.
-#
-# La ontología usa la **clave primaria declarada en el modelo** como *entity type key*.
+# # Este paso se salta muy fácil y cuesta caro después.
+# # La ontología usa la **clave primaria declarada en el modelo** como *entity type key*.
 # Si una tabla no la tiene, Fabric IQ genera la entidad pero **no puede enlazar sus
 # relaciones a datos**, y hay que definirlas a mano una por una en la interfaz.
-#
-# Marcamos también las claves de los hechos (`id_venta`, `id_despacho`, `id_lectura`).
+# # Marcamos también las claves de los hechos (`id_venta`, `id_despacho`, `id_lectura`).
 # En un modelo de BI puro no harían falta; para la ontología son imprescindibles,
 # porque un evento sin identidad no puede ser una entidad.
 
@@ -246,8 +232,7 @@ for nombre, claves in CLAVES.items():
 # MARKDOWN ********************
 
 # ## Medidas
-#
-# Las medidas viven en el modelo semántico y **no** viajan a la ontología: Fabric IQ
+# # Las medidas viven en el modelo semántico y **no** viajan a la ontología: Fabric IQ
 # no consulta medidas ni columnas calculadas. Las agregamos igual porque el modelo
 # también tiene que servir para Power BI, y porque el contraste es parte del taller:
 # lo que sirve a un informe y lo que sirve a un agente no es lo mismo.
@@ -350,15 +335,11 @@ for nombre in MODELOS:
 # MARKDOWN ********************
 
 # ### Antes de seguir
-#
-# Comprueba en la salida de arriba que los tres modelos tienen:
-#
-# - las tablas esperadas (4, 4 y 3),
+# # Comprueba en la salida de arriba que los tres modelos tienen:
+# # - las tablas esperadas (4, 4 y 3),
 # - relaciones > 0,
 # - **una clave por tabla**, incluidas las de hechos,
 # - columnas con descripción heredada > 0.
-#
-# Si las descripciones vienen en 0, los comentarios de `nb_02` no se persistieron:
+# # Si las descripciones vienen en 0, los comentarios de `nb_02` no se persistieron:
 # vuelve a ejecutar `nb_02` y luego este notebook con `overwrite=True`.
-#
-# Siguiente paso: `nb_05_enriquecer_sempy`.
+# # Siguiente paso: `nb_05_enriquecer_sempy`.

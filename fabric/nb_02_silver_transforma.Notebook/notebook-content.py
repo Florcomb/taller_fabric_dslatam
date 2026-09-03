@@ -12,28 +12,23 @@
 # MARKDOWN ********************
 
 # # nb_02_silver_transforma · Bronze → Silver
-#
-# Silver es la capa donde el dato deja de ser "lo que llegó" y pasa a ser **lo que el
+# # Silver es la capa donde el dato deja de ser "lo que llegó" y pasa a ser **lo que el
 # negocio afirma**. Aquí se decide qué es una venta válida, qué es un cliente único y
 # qué significa `-18,0`.
-#
-# En este taller Silver tiene una exigencia extra: **es la capa sobre la que se van a
+# # En este taller Silver tiene una exigencia extra: **es la capa sobre la que se van a
 # construir los tres modelos semánticos y, a través de ellos, la ontología**. Eso impone
 # tres reglas que en un proyecto normal serían opcionales y aquí no lo son:
-#
-# 1. **Nada de `decimal`.** Fabric Graph no soporta ese tipo; una columna decimal se
+# # 1. **Nada de `decimal`.** Fabric Graph no soporta ese tipo; una columna decimal se
 #    devuelve como `null` en toda consulta de la ontología. Los montos van en `double`.
 # 2. **Nombres `snake_case`, sin espacios ni caracteres especiales.** Si el nombre lleva
 #    espacio, `,`, `;`, `{}`, `()`, `=`, tab o salto de línea, Delta activa *column
 #    mapping* y el grafo de la ontología deja de poder leer la tabla.
 # 3. **Toda tabla tiene una clave única `string`.** Es la futura *entity type key*. Los
 #    hechos también: `ft_venta` necesita `id_venta` aunque el modelo de BI no lo use.
-#
-# Además dejamos **comentarios en las columnas**. No es documentación decorativa: con
+# # Además dejamos **comentarios en las columnas**. No es documentación decorativa: con
 # `inherit_descriptions=True`, `sempy` los convierte en descripciones del modelo
 # semántico, y de ahí bajan a la ontología como contexto para los agentes.
-#
-# ⏱️ ~20 minutos · Salida: 9 tablas en `lh_silver_polar.dbo`
+# # ⏱️ ~20 minutos · Salida: 9 tablas en `lh_silver_polar.dbo`
 
 # CELL ********************
 
@@ -107,8 +102,7 @@ def registrar_descarte(tabla: str, motivo: str, antes: int, despues: int):
 # MARKDOWN ********************
 
 # ## dim_tienda
-#
-# La tienda es la **entidad puente** del taller: aparece en los tres dominios
+# # La tienda es la **entidad puente** del taller: aparece en los tres dominios
 # (vende, recibe despachos, aloja equipos de frío). Es lo que hará que la ontología
 # pueda cruzar información que ningún modelo semántico tiene por separado.
 
@@ -236,8 +230,7 @@ comentar_tabla(LH_SILVER, "dim_cliente", "Maestro de clientes de Polar Sur, dedu
 # MARKDOWN ********************
 
 # ## ft_venta
-#
-# Aquí se aplican las reglas de calidad que definen qué cuenta como venta.
+# # Aquí se aplican las reglas de calidad que definen qué cuenta como venta.
 # Nótese el `withColumnRenamed`: `Monto Total` → `monto_total`. Ese renombre es la
 # diferencia entre una ontología que funciona y una que devuelve nulos en silencio.
 
