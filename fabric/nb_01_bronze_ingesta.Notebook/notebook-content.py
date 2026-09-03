@@ -12,15 +12,15 @@
 # MARKDOWN ********************
 
 # # nb_01_bronze_ingesta · Aterrizaje en Bronze
-# # Genera los datos crudos de **Polar Sur** (cadena ficticia de heladerías) y los deja
+# Genera los datos crudos de **Polar Sur** (cadena ficticia de heladerías) y los deja
 # en `lh_bronze_polar` tal como "llegarían" de los sistemas de origen: con tipos
 # equivocados, duplicados, nulos y nombres inconsistentes.
-# # **Regla de Bronze: no se limpia nada.** Bronze es el registro de auditoría. Lo único
+# **Regla de Bronze: no se limpia nada.** Bronze es el registro de auditoría. Lo único
 # que agregamos son tres columnas de trazabilidad (`ts_ingesta`, `archivo_origen`,
 # `id_lote`) que responden "¿de dónde salió esta fila y cuándo entró?".
-# # La suciedad no es decorativa: cada defecto que ves aquí se corrige en `nb_02` y
+# La suciedad no es decorativa: cada defecto que ves aquí se corrige en `nb_02` y
 # existe para justificar por qué la capa Silver no es opcional.
-# # ⏱️ ~15 minutos · Salida: 9 tablas en `lh_bronze_polar.dbo`
+# ⏱️ ~15 minutos · Salida: 9 tablas en `lh_bronze_polar.dbo`
 
 # CELL ********************
 
@@ -36,10 +36,10 @@
 # MARKDOWN ********************
 
 # ## Generación determinista
-# # No usamos `rand()`. `rand()` en Spark depende del particionado, así que dos
+# No usamos `rand()`. `rand()` en Spark depende del particionado, así que dos
 # participantes con distinta configuración de cluster obtendrían datos distintos y
 # los números del taller dejarían de coincidir.
-# # En su lugar derivamos todo de `hash(columna, semilla)`: mismo input, mismo output,
+# En su lugar derivamos todo de `hash(columna, semilla)`: mismo input, mismo output,
 # en cualquier cluster.
 
 # CELL ********************
@@ -328,7 +328,7 @@ display(br_despachos.limit(5))
 # MARKDOWN ********************
 
 # ## Dominio activos · equipos de frío y lecturas de sensor
-# # Esta es la parte que ningún modelo semántico de ventas puede responder por sí solo,
+# Esta es la parte que ningún modelo semántico de ventas puede responder por sí solo,
 # y por eso es la que justifica la ontología.
 
 # CELL ********************
@@ -417,7 +417,7 @@ for t in TABLAS_BRONZE:
 # MARKDOWN ********************
 
 # ### Qué llevamos a Silver
-# # | Defecto plantado | Dónde | Se corrige en |
+# | Defecto plantado | Dónde | Se corrige en |
 # |---|---|---|
 # | IDs con espacios y mayúsculas | `br_tiendas.ID_TIENDA` | `nb_02` · `trim` + `upper` |
 # | Decimales con coma | `latitud`, `precio_lista`, `temperatura`, `distancia_km` | `nb_02` · `regexp_replace` + cast a `double` |
@@ -427,9 +427,10 @@ for t in TABLAS_BRONZE:
 # | Montos nulos (2%) | `br_ventas` | `nb_02` · descarte con registro del conteo |
 # | Unidades negativas (1%) | `br_ventas` | `nb_02` · descarte |
 # | Booleanos como `SI`/`Si`/`si`/`NO` | `requiere_frio`, `refrigerado` | `nb_02` · normalización a `boolean` |
-# # El de la columna con espacio es el más importante del taller: si esa columna llegara
+# El de la columna con espacio es el más importante del taller: si esa columna llegara
 # así a Silver, Delta activaría *column mapping* en la tabla y **la ontología no podría
 # leerla**, sin ningún mensaje de error que lo explique.
+
 
 # CELL ********************
 

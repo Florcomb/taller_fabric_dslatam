@@ -12,10 +12,10 @@
 # MARKDOWN ********************
 
 # # nb_00_setup · Configuración y utilidades del taller
-# # Este notebook **no escribe datos**. Define la configuración y las funciones auxiliares
+# Este notebook **no escribe datos**. Define la configuración y las funciones auxiliares
 # que usan todos los demás notebooks del taller.
-# # Se invoca desde los otros notebooks con `%run nb_00_setup`.
-# # **Por qué existe:** ninguno de los notebooks del taller tiene un lakehouse "pegado"
+# Se invoca desde los otros notebooks con `%run nb_00_setup`.
+# **Por qué existe:** ninguno de los notebooks del taller tiene un lakehouse "pegado"
 # en su metadata. Los IDs de lakehouse cambian en cada workspace, así que si los
 # dejáramos escritos a mano el repositorio no sería reutilizable por otra persona.
 # En vez de eso resolvemos los IDs **en tiempo de ejecución, por nombre**, y escribimos
@@ -60,7 +60,7 @@ DIAS         = 240
 # MARKDOWN ********************
 
 # ## Resolución del workspace y de los lakehouses
-# # `notebookutils.runtime.context` expone el contexto de ejecución del notebook.
+# `notebookutils.runtime.context` expone el contexto de ejecución del notebook.
 # De ahí sacamos el ID del workspace actual, sin escribirlo a mano.
 
 # CELL ********************
@@ -114,7 +114,7 @@ for _nombre in (LH_BRONZE, LH_SILVER, LH_GOLD):
 # MARKDOWN ********************
 
 # ## Helpers de lectura y escritura
-# # Escribimos con rutas `abfss://` apuntando a la carpeta `Tables/` **del propio
+# Escribimos con rutas `abfss://` apuntando a la carpeta `Tables/` **del propio
 # lakehouse**. Eso deja las tablas como **managed tables**, que es un requisito
 # de la ontología de Fabric IQ: las tablas externas (las que viven fuera del
 # directorio OneLake del lakehouse) **no** se pueden enlazar a una entidad.
@@ -157,9 +157,9 @@ def leer(lakehouse: str, tabla: str):
 # MARKDOWN ********************
 
 # ## Reglas de modelado que impone Fabric IQ
-# # Esta función no es decorativa: valida las tres restricciones que más rompen
+# Esta función no es decorativa: valida las tres restricciones que más rompen
 # ontologías en producción. Los notebooks Silver y Gold la llaman antes de escribir.
-# # | Restricción | Por qué |
+# | Restricción | Por qué |
 # |---|---|
 # | Sin `decimal` | Fabric Graph no soporta el tipo `Decimal`. Una columna decimal se lee como `null` en **todas** las consultas de la ontología. Los montos van como `double`. |
 # | Nombres sin espacios ni caracteres especiales | Delta activa *column mapping* automáticamente cuando hay `espacio`, `,`, `;`, `{}`, `()`, `=`, tab o salto de línea en un nombre de columna. El grafo de la ontología **no soporta** tablas con column mapping. |
