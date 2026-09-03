@@ -124,7 +124,7 @@ Se agregan igual, porque el modelo también tiene que servir para Power BI. Pero
 
 ## Ejecución
 
-1. Crea `nb_04_modelos_semanticos` con el contenido de [`fabric/nb_04_modelos_semanticos.Notebook/notebook-content.py`](../fabric/nb_04_modelos_semanticos.Notebook/notebook-content.py)
+1. Crea `nb_04_modelos_semanticos` con el contenido de [`fabric/nb_04_modelos_semanticos.Notebook/notebook-content.py`](../fabric/nb_04_modelos_semanticos.Notebook/notebook-content.py) — o importa [`notebooks/nb_04_modelos_semanticos.ipynb`](../notebooks/nb_04_modelos_semanticos.ipynb)
 2. Ejecuta. La primera celda instala `semantic-link-labs` (~1 minuto) y **reinicia el kernel de Python** — es normal, la sesión de Spark sigue viva.
 3. Total: 5–8 minutos, la mayoría en los tres refrescos.
 

@@ -113,7 +113,7 @@ Fíjate en el comentario de `excursion_termica`: no dice "indica si hubo excursi
 
 ## Ejecución
 
-1. Crea `nb_02_silver_transforma` con el contenido de [`fabric/nb_02_silver_transforma.Notebook/notebook-content.py`](../fabric/nb_02_silver_transforma.Notebook/notebook-content.py)
+1. Crea `nb_02_silver_transforma` con el contenido de [`fabric/nb_02_silver_transforma.Notebook/notebook-content.py`](../fabric/nb_02_silver_transforma.Notebook/notebook-content.py) — o importa [`notebooks/nb_02_silver_transforma.ipynb`](../notebooks/nb_02_silver_transforma.ipynb)
 2. Ejecuta todo. ~3 minutos.
 
 Salida esperada, en dos partes. Las validaciones:

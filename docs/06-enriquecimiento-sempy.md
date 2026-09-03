@@ -106,7 +106,7 @@ No es trabajo perdido, por dos motivos: el modelo semántico también se consume
 
 ## Ejecución
 
-Crea `nb_05_enriquecer_sempy` con el contenido de [`fabric/nb_05_enriquecer_sempy.Notebook/notebook-content.py`](../fabric/nb_05_enriquecer_sempy.Notebook/notebook-content.py) y ejecuta. ~3 minutos.
+Crea `nb_05_enriquecer_sempy` con el contenido de [`fabric/nb_05_enriquecer_sempy.Notebook/notebook-content.py`](../fabric/nb_05_enriquecer_sempy.Notebook/notebook-content.py) , o importa [`notebooks/nb_05_enriquecer_sempy.ipynb`](../notebooks/nb_05_enriquecer_sempy.ipynb), y ejecútalo. ~3 minutos.
 
 Salida esperada:
 

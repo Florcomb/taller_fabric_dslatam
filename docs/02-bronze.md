@@ -99,7 +99,7 @@ En `nb_02` esa columna se renombra en la **primera** operación de la transforma
 
 ## Ejecución
 
-1. Crea el notebook `nb_01_bronze_ingesta` y pega el contenido de [`fabric/nb_01_bronze_ingesta.Notebook/notebook-content.py`](../fabric/nb_01_bronze_ingesta.Notebook/notebook-content.py)
+1. Crea el notebook `nb_01_bronze_ingesta` y pega el contenido de [`fabric/nb_01_bronze_ingesta.Notebook/notebook-content.py`](../fabric/nb_01_bronze_ingesta.Notebook/notebook-content.py) — o importa [`notebooks/nb_01_bronze_ingesta.ipynb`](../notebooks/nb_01_bronze_ingesta.ipynb)
 2. Ejecuta todo. Toma 2–4 minutos, la mayoría en el arranque de la sesión de Spark.
 
 Salida esperada:

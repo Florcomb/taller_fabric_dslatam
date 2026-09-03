@@ -55,7 +55,9 @@ En tu workspace de Fabric:
 
 **Conectar y sincronizar**.
 
-> **El directorio importa.** Si apuntas a la raíz, Fabric intenta interpretar `docs/`, `ontologia/` e `instructor/` como items y no encuentra nada válido. Apunta a `/fabric`, que es donde viven los items.
+> **El directorio importa.** Si apuntas a la raíz, Fabric intenta interpretar `docs/`, `notebooks/`, `ontologia/` e `instructor/` como items y no encuentra nada válido. Apunta a `/fabric`, que es donde viven los items.
+
+> **`notebooks/` no se sincroniza, y es a propósito.** Esa carpeta tiene los mismos siete notebooks en `.ipynb`, para quien los importa a mano o los abre en VS Code. Vive fuera de `/fabric` justamente para que Fabric no intente crear siete notebooks duplicados. Si usas la vía rápida, ignórala.
 
 ---
 

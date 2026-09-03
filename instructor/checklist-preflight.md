@@ -66,6 +66,7 @@ Anota en cada bloque **cuánto tardó de verdad**. Los tiempos de la agenda son 
 - [ ] Confirmar en sala quién tiene workspace con capacidad. Los que no, van directo a vía B en el workspace de un compañero o miran en pantalla compartida
 - [ ] Decir de entrada que **Fabric IQ está en preview** y que la interfaz puede diferir del material
 - [ ] Repartir a los rezagados el enlace de la vía B: [docs/09-via-rapida-git.md](../docs/09-via-rapida-git.md)
+- [ ] Tener a mano la salida de emergencia intermedia: **importar los `.ipynb`** de [`notebooks/`](../notebooks/). Es más rápido que copiar celda por celda y no exige configurar git — sirve para el participante que se quedó en un solo notebook sin tener que reiniciar todo su workspace
 
 ---
 

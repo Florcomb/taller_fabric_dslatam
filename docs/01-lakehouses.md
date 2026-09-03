@@ -31,10 +31,17 @@ Y una que aplica específicamente a este taller: **la ontología solo puede enla
 
 `nb_00_setup` los crea si no existen. Es idempotente: se puede correr las veces que haga falta.
 
-1. En el workspace: **+ Nuevo item → Notebook**
-2. Nómbralo `nb_00_setup`
-3. Copia el contenido de [`fabric/nb_00_setup.Notebook/notebook-content.py`](../fabric/nb_00_setup.Notebook/notebook-content.py) celda por celda
-4. Ejecútalo completo
+Hay dos formas de traer el notebook al workspace. Las dos dejan lo mismo:
+
+**a) Importar el `.ipynb`** — más rápido, y es lo que conviene si vas justo de tiempo.
+
+> **Importar → Notebook → Desde este equipo** → [`notebooks/nb_00_setup.ipynb`](../notebooks/nb_00_setup.ipynb)
+>
+> Puedes importar los siete de una vez y despreocuparte del resto del taller. **Conserva los nombres:** los demás notebooks invocan a `nb_00_setup` con `%run`, y esa llamada resuelve por nombre.
+
+**b) Copiar celda por celda** desde [`fabric/nb_00_setup.Notebook/notebook-content.py`](../fabric/nb_00_setup.Notebook/notebook-content.py) — más lento, pero hace ver la estructura del notebook y de dónde sale cada cosa. Es la que suele usarse en el taller en vivo para este primer notebook, y la importación para los demás.
+
+En cualquiera de los dos casos: **+ Nuevo item → Notebook**, nómbralo `nb_00_setup`, y ejecútalo completo.
 
 En la salida deberías ver:
 

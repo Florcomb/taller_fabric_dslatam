@@ -10,7 +10,7 @@ No es opcional y no es burocracia. Verifica las condiciones que, cuando fallan, 
 
 Ese es el modo de falla característico de Fabric IQ en preview: las entidades aparecen, el grafo se dibuja, y las consultas vuelven vacías. No hay mensaje que lo explique. Cinco minutos aquí ahorran media hora de diagnóstico a ciegas.
 
-Crea `nb_99_validacion` con el contenido de [`fabric/nb_99_validacion.Notebook/notebook-content.py`](../fabric/nb_99_validacion.Notebook/notebook-content.py) y ejecútalo. Debe terminar con:
+Crea `nb_99_validacion` con el contenido de [`fabric/nb_99_validacion.Notebook/notebook-content.py`](../fabric/nb_99_validacion.Notebook/notebook-content.py), o importa [`notebooks/nb_99_validacion.ipynb`](../notebooks/nb_99_validacion.ipynb), y ejecútalo. Debe terminar con:
 
 ```
 ====================================================================

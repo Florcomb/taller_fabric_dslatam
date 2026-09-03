@@ -82,10 +82,24 @@ Si el tiempo aprieta, el bloque 4 (Gold) es el que se recorta: se ejecuta el not
 |---|---|---|
 | `docs/` | Los nueve pasos del taller, uno por archivo | Participantes |
 | `fabric/` | Items listos para git sync: 3 lakehouses + 7 notebooks | Participantes (vía B) |
+| `notebooks/` | Los mismos 7 notebooks en `.ipynb`, para importar a mano | Participantes (vía A) |
 | `ontologia/` | Mapa de entidades y relaciones, y el set de preguntas de demo | Participantes |
 | `instructor/` | Guía de facilitación, tiempos, plan B y checklist previo | **Solo facilitadores** |
+| `tools/` | Conversor que genera los `.ipynb` desde los `.py` | Mantención del repo |
 
-Los notebooks están en el formato `.py` que usa la integración con git de Fabric, no en `.ipynb`. Se leen perfectamente en GitHub y Fabric los reconstruye al sincronizar.
+### Los notebooks vienen en dos formatos
+
+Con el mismo contenido, para dos formas distintas de trabajar:
+
+| | `fabric/<nombre>.Notebook/notebook-content.py` | `notebooks/<nombre>.ipynb` |
+|---|---|---|
+| Formato | Integración con git de Fabric | Jupyter estándar |
+| Llega al workspace | Solo con conectar git | **Importar → Notebook → desde este equipo** |
+| Se sincroniza | **Sí** | No — vive fuera de `/fabric` |
+| Se lee en GitHub | Sí, como Python | Regular: es JSON |
+| Se abre en VS Code | No como notebook | **Sí** |
+
+El `.py` es la **fuente de verdad**: es lo que Fabric sincroniza, y lo que llega de vuelta cuando alguien confirma un cambio desde el workspace. Los `.ipynb` se generan con `python tools/py_a_ipynb.py`. Detalle en [notebooks/README.md](notebooks/README.md).
 
 ---
 

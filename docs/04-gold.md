@@ -98,7 +98,7 @@ Es el perfil de lectura intensiva: Gold se escribe una vez al día y se lee cien
 
 ## Ejecución
 
-Crea `nb_03_gold_agrega` con el contenido de [`fabric/nb_03_gold_agrega.Notebook/notebook-content.py`](../fabric/nb_03_gold_agrega.Notebook/notebook-content.py) y ejecútalo. ~2 minutos.
+Crea `nb_03_gold_agrega` con el contenido de [`fabric/nb_03_gold_agrega.Notebook/notebook-content.py`](../fabric/nb_03_gold_agrega.Notebook/notebook-content.py), o importa [`notebooks/nb_03_gold_agrega.ipynb`](../notebooks/nb_03_gold_agrega.ipynb), y ejecútalo. ~2 minutos.
 
 ## Opcional · un informe rápido
 
